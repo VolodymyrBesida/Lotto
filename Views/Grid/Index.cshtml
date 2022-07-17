@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Index</h1>
+<h2>Example of gaming field</h2>
+<div class="container">
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <table class="table">
+                <tbody>
+                    @for(var i = 0; i < 5; i++)
+                    {
+                         <tr class="table-light">
+                            @for(var j =0; j < 5; j++)
+                            {
+                                @if (@j == 2 && @i == 3)
+                                {
+                                    <td class="bg-info">@j</td>
+                                }
+                                else
+                                {
+                                    <td class="bg-light">@j</td>
+                                }
+
+                            }
+                         </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <a asp-controller="Grid" asp-action="PlayGame" class="btn btn-outline-warning">
+               Play Game
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col d-flex justify-content-start">
+            <p class="text-info">If you want to play,just press the "Play button". We trying to keep it as simple as it possible :)</p>
+        </div>
+    </div>
+</div>
+

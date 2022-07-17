@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewData["Title"] = "PlayGame";
+    Highliter liter;
+    var leader = new Leader(52);
+    leader.ChooseNumber();
+    var grid = new Grid2(5, 5, leader.MaxRandomNumber,leader.WinNumber);
+    grid.CreateField();
+}
+@using TestTaskOnSea.Models;
+@using TestTaskOnSea.Strategy;
+
+<h1>PlayGame</h1>
+<div class="container">
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <table class="table">
+                <tbody>
+                    @{
+                        var tpoint = grid.Row
+                                      .Where(p => p.Value == leader.WinNumber)
+                                      .FirstOrDefault();
+                         @if(tpoint != null)
+                         {
+                             tpoint.isWin = true;
+                             liter = new Highliter(grid.WinWay, tpoint);
+                             liter.Highlit(grid.Row, grid.MaxRow, grid.MaxCol);
+                         }
+                    }
+                    @for(var i = 0; i < grid.MaxRow; i++)
+                    {
+                         
+                         <tr class="table-light">
+                            @for(var j = 0; j < grid.MaxCol; j++)
+                            {
+                                var point = grid.Row
+                                            .Where(p => p.X == i && p.Y == j)
+                                            .FirstOrDefault();
+
+                                @if(point != null)
+                                {
+                                    @if( point.isStreak )
+                                    {
+                                        @if (point.isWin)
+                                        {
+                                            <td class="bg-success">@point.Value</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="bg-info">@point.Value</td>
+                                        }
+                                        
+                                    }
+                                    else
+                                    {
+                                        <td class="bg-light">@point.Value</td>
+                                    }
+                                }
+                                
+                            }
+                         </tr>
+                    }
+                </tbody>
+                
+            </table>
+        </div>
+        <div class="col d-flex justify-content-end">
+            <tr class="table-warning">
+                <th scope="row">Win number</th>
+                <td>@leader.WinNumber</td>
+            </tr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col d-flex justify-content-end">
+            <a asp-controller="Grid" asp-action="PlayGame" class="btn btn-outline-primary">
+               New one
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col d-flex justify-content-start">
+            <br />
+            <p class="text-info">Don't forget to keep a rest ad drink a water</p>
+        </div>
+    </div>
+</div>
