@@ -1,14 +1,15 @@
-﻿using TestTaskOnSea.Strategy;
+﻿using TestTaskOnSea.Models.Interfaces;
+using TestTaskOnSea.Strategy;
 using TestTaskOnSea.Strategy.Interfaces;
 
 namespace TestTaskOnSea.Models
 {
     #region Public Class Grid2
-    public class Grid2
+    public class Grid2 : IGridable
     {
         #region Public Attributes
         public List<Point> Row { get; set; }
-        public IWinningWay WinWay { get; set; }
+        public IWinningWay? WinWay { get; set; }
         public int MaxRow { get; private set; }
         public int MaxCol { get; private set; }
         public int MaxRandom { get; private set; }
