@@ -4,6 +4,6 @@ namespace TestTaskOnSea.Strategy.Interfaces
 {
     public interface IWinningWay
     {
-        void showWinningWay(List<Point> Coordinates, Point target, int maxRow, int maxCol);
+        void showWinningWay(List<Point> Coordinates, PointGrid target, int maxRow, int maxCol);
     }
 }

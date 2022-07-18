@@ -56,7 +56,7 @@ namespace TestTaskOnSea.Strategy
             return secondary;
         }
 
-        private void setStreakInLine(List<Point>lineCoordinates,Point target)
+        private void setStreakInLine(List<Point>lineCoordinates, PointGrid target)
         {
             bool isHasTarget = false;
             foreach (var point in lineCoordinates)
@@ -74,7 +74,7 @@ namespace TestTaskOnSea.Strategy
         }
         #endregion
         #region Public Methods
-        public void showWinningWay(List<Point> Coordinates, Point target, int maxRow, int maxCol)
+        public void showWinningWay(List<Point> Coordinates, PointGrid target, int maxRow, int maxCol)
         {
             int centralCoordinate = calculateCentralPoint(Coordinates);
 

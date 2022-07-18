@@ -7,7 +7,7 @@ namespace TestTaskOnSea.Strategy
     public class VerticalWinningWay : IWinningWay
     {
         #region Public Methods
-        public void showWinningWay(List<Point> Coordinates, Point target, int maxRow,int maxCol)
+        public void showWinningWay(List<Point> Coordinates, PointGrid target, int maxRow,int maxCol)
         {
             for (int i = 0; i < maxRow; i++)
             {
