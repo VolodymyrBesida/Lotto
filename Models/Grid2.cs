@@ -10,8 +10,7 @@ namespace TestTaskOnSea.Models
         #region Public Attributes
         public List<Point> Row { get; set; }
         public IWinningWay? WinWay { get; set; }
-        public int MaxRow { get; private set; }
-        public int MaxCol { get; private set; }
+        public PointGrid MaxPosition { get;private set; }
         public int MaxRandom { get; private set; }
         #endregion
         #region Private Attributes
@@ -20,8 +19,7 @@ namespace TestTaskOnSea.Models
         #region Constructor
         public Grid2(int maxRow,int maxCol, int maxRandom,int winNumber)
         {
-            MaxRow = maxRow;
-            MaxCol = maxCol;
+            MaxPosition = new Point(maxRow, maxRow);
             Row = new List<Point>();
             MaxRandom = maxRandom;
             _winNumber = winNumber;
@@ -32,9 +30,9 @@ namespace TestTaskOnSea.Models
         {
             Random randomizer = new Random();
             List<int> hasList = new List<int>();
-            for (int i = 0; i < this.MaxRow; i++)
+            for (int i = 0; i < this.MaxPosition.X; i++)
             {
-                for (int j = 0; j < this.MaxCol; j++)
+                for (int j = 0; j < this.MaxPosition.Y; j++)
                 {
                     int randomInt = randomizer.Next(1, MaxRandom);
                     while (hasList.Contains(randomInt))

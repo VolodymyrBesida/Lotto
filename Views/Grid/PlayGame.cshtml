@@ -24,14 +24,14 @@
                          {
                              tpoint.isWin = true;
                              liter = new Highliter(grid.WinWay, tpoint);
-                             liter.Highlit(grid.Row, grid.MaxRow, grid.MaxCol);
+                             liter.Highlit(grid.Row, grid.MaxPosition.X, grid.MaxPosition.Y);
                          }
                     }
-                    @for(var i = 0; i < grid.MaxRow; i++)
+                    @for(var i = 0; i < grid.MaxPosition.X; i++)
                     {
                          
                          <tr class="table-light">
-                            @for(var j = 0; j < grid.MaxCol; j++)
+                            @for(var j = 0; j < grid.MaxPosition.Y; j++)
                             {
                                 var point = grid.Row
                                             .Where(p => p.X == i && p.Y == j)
