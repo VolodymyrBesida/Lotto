@@ -1,4 +1,4 @@
-﻿namespace TestTaskOnSea.Models
+﻿namespace TestTaskOnSea.Models.Pointable
 {
     #region Public Class PointGrid
     public abstract class PointGrid

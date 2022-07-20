@@ -1,4 +1,4 @@
-﻿using TestTaskOnSea.Models;
+﻿using TestTaskOnSea.Models.Pointable;
 using TestTaskOnSea.Strategy.Interfaces;
 
 namespace TestTaskOnSea.Strategy
@@ -69,7 +69,11 @@ namespace TestTaskOnSea.Strategy
             if (isHasTarget)
             {
                 foreach (var point in lineCoordinates)
-                    point.isStreak = true;
+                {
+                    point.Streaker.isStreak = true;
+                    point.Streaker.isDiagonalStreak = true;
+                }
+                    
             }
         }
         #endregion

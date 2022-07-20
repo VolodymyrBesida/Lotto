@@ -1,4 +1,4 @@
-﻿using TestTaskOnSea.Models;
+﻿using TestTaskOnSea.Models.Pointable;
 using TestTaskOnSea.Strategy.Interfaces;
 
 namespace TestTaskOnSea.Strategy
@@ -16,7 +16,8 @@ namespace TestTaskOnSea.Strategy
                             .FirstOrDefault();
                 if (point == null)
                     break;
-                point.isStreak = true;
+                point.Streaker.isStreak = true;
+                point.Streaker.isHorizontalStreak = true;
             }
         }
         #endregion

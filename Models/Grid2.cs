@@ -1,5 +1,5 @@
 ﻿using TestTaskOnSea.Models.Interfaces;
-using TestTaskOnSea.Strategy;
+using TestTaskOnSea.Models.Pointable;
 using TestTaskOnSea.Strategy.Interfaces;
 
 namespace TestTaskOnSea.Models

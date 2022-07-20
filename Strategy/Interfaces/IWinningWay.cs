@@ -1,4 +1,4 @@
-﻿using TestTaskOnSea.Models;
+﻿using TestTaskOnSea.Models.Pointable;
 
 namespace TestTaskOnSea.Strategy.Interfaces
 {

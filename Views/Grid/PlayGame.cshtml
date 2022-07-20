@@ -8,7 +8,10 @@
     grid.CreateField();
 }
 @using TestTaskOnSea.Models;
+@using TestTaskOnSea.Models.Pointable;
+@using TestTaskOnSea.Models.Pointable.Streakerable;
 @using TestTaskOnSea.Strategy;
+@using TestTaskOnSea.Strategy.Interfaces
 
 <h1>PlayGame</h1>
 <div class="container">
@@ -22,14 +25,13 @@
                                       .FirstOrDefault();
                          @if(tpoint != null)
                          {
-                             tpoint.isWin = true;
+                             tpoint.Streaker.isWin = true;
                              liter = new Highliter(grid.WinWay, tpoint);
                              liter.Highlit(grid.Row, grid.MaxPosition.X, grid.MaxPosition.Y);
                          }
                     }
                     @for(var i = 0; i < grid.MaxPosition.X; i++)
                     {
-                         
                          <tr class="table-light">
                             @for(var j = 0; j < grid.MaxPosition.Y; j++)
                             {
@@ -39,29 +41,34 @@
 
                                 @if(point != null)
                                 {
-                                    @if( point.isStreak )
+                                    @if( point.Streaker.isStreak )
                                     {
-                                        @if (point.isWin)
+                                        @if (point.Streaker.isWin)
                                         {
                                             <td class="bg-success">@point.Value</td>
                                         }
-                                        else
+                                        else if(point.Streaker.isDiagonalStreak)
                                         {
                                             <td class="bg-info">@point.Value</td>
                                         }
-                                        
+                                        else if (point.Streaker.isHorizontalStreak)
+                                        {
+                                            <td class="bg-warning">@point.Value</td>
+                                        }
+                                        else if (point.Streaker.isVerticalStreak)
+                                        {
+                                            <td class="bg-primary">@point.Value</td>
+                                        }
                                     }
                                     else
                                     {
                                         <td class="bg-light">@point.Value</td>
                                     }
                                 }
-                                
                             }
                          </tr>
                     }
                 </tbody>
-                
             </table>
         </div>
         <div class="col d-flex justify-content-end">
