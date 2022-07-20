@@ -1,7 +1,9 @@
-﻿namespace TestTaskOnSea.Models
+﻿using TestTaskOnSea.Models.Interfaces;
+
+namespace TestTaskOnSea.Models
 {
     #region Public Class Leader
-    public class Leader
+    public class Leader : ILeadable
     {
         #region Public Attributes
         public int MaxRandomNumber { get; set; }
