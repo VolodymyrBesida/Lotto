@@ -11,13 +11,13 @@ namespace TestTaskOnSea.Strategy
         {
             for (int i = 0; i < maxRow; i++)
             {
-                var point = Coordinates
+                var centralPoint = Coordinates
                             .Where(cord => cord.X == i && cord.Y == target.Y)
                             .FirstOrDefault();
-                if (point == null)
+                if (centralPoint == null)
                     break;
-                point.Streaker.isStreak = true;
-                point.Streaker.isVerticalStreak = true;
+                centralPoint.Streaker.isStreak = true;
+                centralPoint.Streaker.isVerticalStreak = true;
             }
         }
         #endregion

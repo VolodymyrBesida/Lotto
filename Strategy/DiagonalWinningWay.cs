@@ -7,6 +7,7 @@ namespace TestTaskOnSea.Strategy
     public class DiagonalWinningWay : IWinningWay
     {
         #region Private Methods
+        //necessary method for getting central point of game field
         private int calculateCentralPoint(List<Point> coordinates)
         {
             int totalX = 0;
@@ -15,7 +16,7 @@ namespace TestTaskOnSea.Strategy
 
             return totalX / coordinates.Count;
         }
-
+        //calculating from top left side to bottom right
         private List<Point> calculatePrincipleLine(List<Point>coordinates,int maxCol)
         {
             List<Point> primaryLine = new List<Point>();
@@ -35,7 +36,7 @@ namespace TestTaskOnSea.Strategy
             }
             return primaryLine;
         }
-
+        //calculating from top right side to left bottom
         private List<Point> calculateSecondaryLine(List<Point>coordinates,int maxCol)
         {
             List<Point> secondary = new List<Point>();
@@ -55,10 +56,11 @@ namespace TestTaskOnSea.Strategy
             }
             return secondary;
         }
-
+        //we're using this method  to draw line in our coordinates in each line
         private void setStreakInLine(List<Point>lineCoordinates, PointGrid target)
         {
             bool isHasTarget = false;
+            //check if our array has target point
             foreach (var point in lineCoordinates)
             {
                 if (point.X == target.X && point.Y == target.Y)
@@ -66,7 +68,7 @@ namespace TestTaskOnSea.Strategy
                     isHasTarget = true;
                 }
             }
-            if (isHasTarget)
+            if (isHasTarget) // if we have, we should say that our line is streakable
             {
                 foreach (var point in lineCoordinates)
                 {
@@ -81,15 +83,16 @@ namespace TestTaskOnSea.Strategy
         public void showWinningWay(List<Point> Coordinates, PointGrid target, int maxRow, int maxCol)
         {
             int centralCoordinate = calculateCentralPoint(Coordinates);
-
-            var point = Coordinates
+            //getting central point
+            var centralPoint = Coordinates
                            .Where(cord => cord.X == centralCoordinate && cord.Y == centralCoordinate)
                            .FirstOrDefault();
-            if (point != null)
+            if (centralPoint != null)
             {
+                //getting each type of lines
                 List<Point> principle = calculatePrincipleLine(Coordinates,maxCol);
                 List<Point> second = calculateSecondaryLine(Coordinates, maxCol);
-                
+                //here we gonna check each line if target point is present there
                 setStreakInLine(principle, target);
                 setStreakInLine(second, target);
             }
