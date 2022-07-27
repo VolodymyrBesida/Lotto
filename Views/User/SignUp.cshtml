@@ -1,0 +1,33 @@
+﻿@model User
+<form method="post">
+  <fieldset>
+    <div class="form-group">
+      <label for="exampleLogin" class="form-label mt-4">Your Login</label>
+      <input type="text" class="form-control" id="exampleLogin" asp-for="Login" aria-describedby="loginHelp" placeholder="Enter login">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+      <input type="password" class="form-control" asp-for="Password" id="exampleInputPassword1" placeholder="Password">
+      <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
+      <input type="email" class="form-control" asp-for="Email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+      <label for="exampleName" class="form-label mt-4">Your Name</label>
+      <input type="text" class="form-control" id="exampleName" asp-for="Name" aria-describedby="NameHelp" placeholder="Enter Name">
+    </div>
+    <div class="form-group">
+      <label for="exampleSurname" class="form-label mt-4">Your Login</label>
+      <input type="text" class="form-control" id="exampleSurname" asp-for="Surname" aria-describedby="surnameHelp" placeholder="Enter surname">
+    </div>
+    <div class="form-group">
+      <label for="exampleAge" class="form-label mt-4">Your Login</label>
+      <input type="number" class="form-control" id="exampleAge" asp-for="Age" aria-describedby="ageHelp" placeholder="Enter age">
+    </div>
+  </fieldset>
+  <br />
+  <button type="submit" class="btn btn-outline-primary">Sign Up</button>
+</form>

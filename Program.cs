@@ -1,13 +1,16 @@
 using Microsoft.EntityFrameworkCore;
-using TestTaskOnSea.Data;
+using TestTaskOnSea.Models;
+using TestTaskOnSea.Repositories;
+using TestTaskOnSea.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(
+builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection")
     ));
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
