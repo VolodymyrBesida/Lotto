@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TestTaskOnSea.Models;
-using TestTaskOnSea.Repositories.Interfaces;
+using TestTaskOnSea.UnitOfWork.Interfaces;
 
 namespace TestTaskOnSea.Controllers
 {
     public class UserController : Controller
     {
-        private readonly IUserRepository _userRepository;
-        public UserController(AppDbContext context,IUserRepository userRepository)
+        private readonly IUnitOfWork _unitOfWork;
+        public UserController(IUnitOfWork unitOfWork)
         {
-            _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
@@ -30,13 +30,14 @@ namespace TestTaskOnSea.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SignUp(User user)
         {
-            await _userRepository.AddUser(user);
+            _unitOfWork.userRepository.AddUser(user);
+            await _unitOfWork.SaveAsync();
             return RedirectToAction("SignIn");
         }
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var users = await _userRepository.GetAll();
+            var users = await _unitOfWork.userRepository.GetAllAsync();
             return Ok(users);
         }
     }

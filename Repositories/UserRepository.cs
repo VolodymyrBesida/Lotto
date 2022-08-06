@@ -12,52 +12,49 @@ namespace TestTaskOnSea.Repositories
             _context = context;
         }
 
-        public async void Delete(int id)
+        public void Delete(int id)
         {
-            var user = await _context.Users.Where(u => u.Id == id)
-                                           .FirstOrDefaultAsync();
+            var user = _context.Users.Where(u => u.Id == id)
+                                           .FirstOrDefault();
             if(user != null)
-            {
                 _context.Users.Remove(user);
-                await _context.SaveChangesAsync();
-            }
         }
 
-        public async Task<IEnumerable<User>> GetAll() 
+        public async Task<IEnumerable<User>> GetAllAsync() 
             => await _context.Users.ToArrayAsync();
 
-        public async Task<User> GetByEmail(string email)
+        public async Task<User> GetByEmailAsync(string email)
         {
             var user = await _context.Users.Where(u => u.Email == email)
                                            .FirstOrDefaultAsync();
             return user;
         }
 
-        public async Task<User> GetById(int id)
+        public async Task<User> GetByIdAsync(int id)
         {
             var user = await _context.Users.Where(u => u.Id == id)
                                            .FirstOrDefaultAsync();
             return user;
         }
 
-        public async Task<User> GetByUserName(string userName)
+        public async Task<User> GetByUserNameAsync(string userName)
         {
             var user = await _context.Users.Where(u => u.Name == userName)
                                            .FirstOrDefaultAsync();
             return user;
         }
 
-        public async Task<User> GetByLogin(string login)
+        public async Task<User> GetByLoginAsync(string login)
         {
             var user = await _context.Users.Where(u => u.Login == login)
                                            .FirstOrDefaultAsync();
             return user;
         }
 
-        public async void Update(User user)
+        public void Update(User user)
         {
-            var userUpdate = await _context.Users.Where(u => u.Id == user.Id)
-                                                 .FirstOrDefaultAsync();
+            var userUpdate = _context.Users.Where(u => u.Id == user.Id)
+                                                 .FirstOrDefault();
             if(userUpdate != null)
             {
                 userUpdate.Login = user.Login;
@@ -65,16 +62,11 @@ namespace TestTaskOnSea.Repositories
                 userUpdate.Name = user.Name;
                 userUpdate.Surname = user.Surname;
                 userUpdate.Age = user.Age;
-
-                await _context.SaveChangesAsync();
             }
         }
 
-        public async Task<User> AddUser(User user)
-        {
-            var createdUser = await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
-            return createdUser.Entity;
-        }
+        public void AddUser(User user)
+            => _context.Users.Add(user);
+
     }
 }

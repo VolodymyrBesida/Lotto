@@ -4,12 +4,12 @@ namespace TestTaskOnSea.Repositories.Interfaces
 {
     public interface IUserRepository
     {
-        Task<IEnumerable<User>> GetAll();
-        Task<User> GetById(int id);
-        Task<User> GetByUserName(string userName);
-        Task<User> GetByLogin(string login);
-        Task<User> GetByEmail(string email);
-        Task<User> AddUser(User user);
+        Task<IEnumerable<User>> GetAllAsync();
+        Task<User> GetByIdAsync(int id);
+        Task<User> GetByUserNameAsync(string userName);
+        Task<User> GetByLoginAsync(string login);
+        Task<User> GetByEmailAsync(string email);
+        void AddUser(User user);
         void Update(User user);
         void Delete(int id);
     }
